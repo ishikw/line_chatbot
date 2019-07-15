@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 class UserProfile {
-    constructor(date, number,time) {
+    constructor(date, number, time) {
         this.date = date;
         this.number = number;
         this.time = time;
