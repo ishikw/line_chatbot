@@ -60,3 +60,20 @@ Form::macro('myRange', function ($name, $start, $end, $selected='', $options=[])
         </div>
     ";
 });
+
+
+Form::macro('myDateRange', function ($name, $label , $options=[],$default = null) {
+    $label = ($label =='') ? '' : html_entity_decode(Form::label($name, $label));
+    return "
+        <div class='form-group'>
+            ". $label ."
+            <div class='row'>
+                <div class=\"col-md-4\">".
+                Form::input("text", $name, $default, array_merge(["class" => "form-control"], $options)).
+                "</div> ~ <div class=\"col-md-4\">".
+                Form::input("text", $name, $default, array_merge(["class" => "form-control"], $options)). "
+                </div> 
+            </div> 
+        </div>
+    ";
+});

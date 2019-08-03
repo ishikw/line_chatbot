@@ -1,38 +1,55 @@
 @extends('admin.default')
 
 @section('page-header')
-    Users <small>{{ trans('app.manage') }}</small>
+    Badget <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
 
-    <div class="mB-20">
-        <a href="{{ route(ADMIN . '.users.create') }}" class="btn btn-info">
-            {{ trans('app.add_button') }}
-        </a>
-    </div>
 
+
+    {!! Form::model($badget, [
+            'action' => ['BadgetController@index'],
+            'method' => 'put', 
+            'files' => true
+        ])
+    !!}
+
+    <div class="row mB-40">
+        <div class="col-sm-8">
+            <div class="bgc-white p-20 bd">
+                {!! Form::myInput('text', 'badget', '今月予算') !!}
+        <button type="submit" class="btn btn-primary">{{ trans('app.update_item') }}</button>
+            </div>  
+        </div>
+    </div>
+    {!! Form::close() !!}
+
+    <div class="bgc-white bd bdrs-3 p-20 mB-20">
+        <div class="masonry-item col-md-12">
+            <div class="bgc-white p-20 bd">
+                <h6 class="c-grey-900">予算履歴</h6>
+                <div class="mT-30">
+                <canvas id="line-chart" height="220"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="bgc-white bd bdrs-3 p-20 mB-20">
         <table id="dataTable" class="table table-bordered thead-dark" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
+                    <th>日付</th>
+                    <th>予定</th>
+                    <th>実績</th>
+                    <th>消化率</th>
+                    <th>詳細</th>
                 </tr>
             </thead>
             
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </tfoot>
-            
             <tbody>
-                @foreach ($items as $item)
+                @foreach ($badgets as $badget)
                     <tr>
                         <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->name }}</a></td>
                         <td>{{ $item->email }}</td>
@@ -54,11 +71,14 @@
                                 </li>
                             </ul>
                         </td>
+                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->email }}</td>
                     </tr>
                 @endforeach
             </tbody>
         
         </table>
     </div>
+
 
 @endsection

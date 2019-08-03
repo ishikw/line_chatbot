@@ -1,13 +1,13 @@
 @extends('admin.default')
 
 @section('page-header')
-    Users <small>{{ trans('app.manage') }}</small>
+    Event <small>{{ trans('app.manage') }}</small>
 @endsection
 
 @section('content')
 
     <div class="mB-20">
-        <a href="{{ route(ADMIN . '.users.create') }}" class="btn btn-info">
+        <a href="{{ route(ADMIN . '.event.create') }}" class="btn btn-info">
             {{ trans('app.add_button') }}
         </a>
     </div>
@@ -34,16 +34,16 @@
             <tbody>
                 @foreach ($items as $item)
                     <tr>
-                        <td><a href="{{ route(ADMIN . '.users.edit', $item->id) }}">{{ $item->name }}</a></td>
+                        <td><a href="{{ route(ADMIN . '.event.edit', $item->id) }}">{{ $item->name }}</a></td>
                         <td>{{ $item->email }}</td>
                         <td>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <a href="{{ route(ADMIN . '.users.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
+                                    <a href="{{ route(ADMIN . '.event.edit', $item->id) }}" title="{{ trans('app.edit_title') }}" class="btn btn-primary btn-sm"><span class="ti-pencil"></span></a></li>
                                 <li class="list-inline-item">
                                     {!! Form::open([
                                         'class'=>'delete',
-                                        'url'  => route(ADMIN . '.users.destroy', $item->id), 
+                                        'url'  => route(ADMIN . '.event.destroy', $item->id), 
                                         'method' => 'DELETE',
                                         ]) 
                                     !!}
