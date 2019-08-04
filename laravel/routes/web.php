@@ -1,15 +1,22 @@
 <?php
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Auth::routes();
+
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+|------------------------------------------------------------------------------------
+| Admin
+|------------------------------------------------------------------------------------
 */
+Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Role:10']], function () {
+    Route::get('/', 'DashboardController@index')->name('dash');
+    Route::resource('users', 'UserController');
+    Route::get('bot/chat', 'BotController@chat')->name('bot.chat');
+    Route::resource('bot', 'BotController');
+    Route::resource('shop', 'ShopController');
+    Route::resource('badget', 'BadgetController');
+    Route::resource('event', 'EventController');
+});
 
 Route::get('/', function () {
     return view('welcome');
