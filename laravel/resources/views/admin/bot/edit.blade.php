@@ -1,18 +1,18 @@
 @extends('admin.default')
 
 @section('page-header')
-	User <small>{{ trans('app.update_item') }}</small>
+	Bot <small>{{ trans('app.update_item') }}</small>
 @stop
 
 @section('content')
 	{!! Form::model($item, [
-			'action' => ['UserController@update', $item->id],
+			'action' => ['BotController@update', $item->id],
 			'method' => 'put', 
 			'files' => true
 		])
 	!!}
 
-		@include('admin.users.form')
+		@include('admin.bot.form')
 
 		<button type="submit" class="btn btn-primary">{{ trans('app.edit_button') }}</button>
 		

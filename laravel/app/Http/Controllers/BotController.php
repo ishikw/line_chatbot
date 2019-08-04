@@ -27,6 +27,7 @@ class BotController extends Controller
     public function create()
     {
         //
+        return view('admin.bot.create', compact('items'));
     }
 
     /**
@@ -83,5 +84,14 @@ class BotController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * Display chat
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chat()
+    {
+        return view('admin.bot.chat');
     }
 }

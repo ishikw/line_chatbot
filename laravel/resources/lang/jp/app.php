@@ -11,7 +11,7 @@ return [
 	"manage"       => "管理",
 	"edit_title"   => "編集",
 	"delete_title" => "削除",
-	"add_new_item" => "追加",
+	"add_new_item" => "新規追加",
 	"update_item" => "更新",
 
 	// View buttons
