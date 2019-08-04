@@ -62,6 +62,9 @@ class EventController extends Controller
     public function edit($id)
     {
         //
+        $item = User::latest('updated_at')->first();
+
+        return view('admin.event.edit', compact('item'));
     }
 
     /**
