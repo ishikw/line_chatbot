@@ -5,7 +5,7 @@ MAINTAINER "" <>
 WORKDIR /tmp
 
 RUN apt-get update -y
-RUN apt-get install -y git libzip-dev
+RUN apt-get install -y git libzip-dev unzip
 RUN apt-get install -y libxrender1 libfontconfig1 libxext6 fonts-ipafont
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install zip
