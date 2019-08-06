@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { ComponentDialog, NumberPrompt, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
+const { ComponentDialog, NumberPrompt, TextPrompt, DateTimePrompt, WaterfallDialog } = require('botbuilder-dialogs');
 const { ReviewSelectionDialog, REVIEW_SELECTION_DIALOG } = require('./reviewSelectionDialog');
 const { UserProfile } = require('../userProfile');
 
@@ -10,12 +10,14 @@ const TOP_LEVEL_DIALOG = 'TOP_LEVEL_DIALOG';
 const WATERFALL_DIALOG = 'WATERFALL_DIALOG';
 const TEXT_PROMPT = 'TEXT_PROMPT';
 const NUMBER_PROMPT = 'NUMBER_PROMPT';
+const DATETIME_PROMPT = 'DATETIME_PROMPT';
 
 class TopLevelDialog extends ComponentDialog {
     constructor() {
         super(TOP_LEVEL_DIALOG);
         this.addDialog(new TextPrompt(TEXT_PROMPT));
         this.addDialog(new NumberPrompt(NUMBER_PROMPT));
+        this.addDialog(new DateTimePrompt(DATETIME_PROMPT));
 
         this.addDialog(new ReviewSelectionDialog());
 
@@ -37,7 +39,7 @@ class TopLevelDialog extends ComponentDialog {
         const promptOptions = { prompt: 'ご予約を希望ですね、何月何日でしょうか?' };
 
         // Ask the user to enter their name.
-        return await stepContext.prompt(TEXT_PROMPT, promptOptions);
+        return await stepContext.prompt(DATETIME_PROMPT, promptOptions);
     }
 
     async timeStep(stepContext) {
