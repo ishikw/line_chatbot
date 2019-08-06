@@ -13,7 +13,7 @@ class CreateStores extends Migration
      */
     public function up()
     {
-        Schema::create('store', function (Blueprint $table) {
+        Schema::create('stores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('zip');
@@ -31,6 +31,6 @@ class CreateStores extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('stores');
     }
 }
