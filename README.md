@@ -1,16 +1,18 @@
-# complex dialog sample
+# chatbot
 
-This sample creates a complex conversation with dialogs.
+## Startup guides for docker
 
-
-## Further reading
-
-- [Azure Bot Service](https://docs.microsoft.com/azure/bot-service/bot-service-overview-introduction?view=azure-bot-service-4.0)
-- [Bot Storage](https://docs.microsoft.com/azure/bot-service/dotnet/bot-builder-dotnet-state?view=azure-bot-service-3.0&viewFallbackFrom=azure-bot-service-4.0)
-o
-## Deploy
 ```
-az login
-zip -r  code.zip .
-az webapp deployment source config-zip --resource-group "LINE-test-resource" --name "jmatest2-bot10" --src "code.zip"
+docker-compose -f Dockerfiles/docker-compose.yml up -d
+docker-compose -f Dockerfiles/docker-compose.yml run --rm composer update
+cp laravel/.env.docker laravel/.env
+docker-compose -f Dockerfiles/docker-compose.yml run --rm fpm bash -c "cd /data/laravel/ && php artisan key:generate"
+docker-compose -f Dockerfiles/docker-compose.yml run --rm fpm bash -c "cd /data/laravel/ && php artisan migrate:refresh --seed"
 ```
+
+- to start the app on [http://localhost/](http://localhost)
+
+- stop containers
+  ```
+  docker-compose -f Dockerfiles/docker-compose.yml down
+  ```
