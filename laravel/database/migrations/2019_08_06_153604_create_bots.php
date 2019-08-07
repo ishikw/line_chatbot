@@ -16,7 +16,7 @@ class CreateBots extends Migration
         Schema::create('bots', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('shop_id')->default(0);
+            $table->integer('store_id')->default(0);
             $table->integer('is_open')->default(0);
             $table->string('qr_url');
             $table->timestamps();
