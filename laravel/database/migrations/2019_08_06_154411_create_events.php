@@ -15,7 +15,7 @@ class CreateEvents extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('shop_id')->default(0);
+            $table->integer('store_id')->default(0);
             $table->string('name');
             $table->timestamp('date_from')->nullable();
             $table->timestamp('date_to')->nullable();

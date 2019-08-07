@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Store;
-use App\Bot;
+use App\Event;
 
-class BotTableSeeder extends Seeder
+class EventTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,21 +15,22 @@ class BotTableSeeder extends Seeder
     {
         $stores = Store::all();
         foreach($stores as $store){
-            $bot = $this->createBot($store->id);
+            $event = $this->createEvent($store->id);
         }
     }
-    public function createBot($store_id){
+    public function createEvent($store_id){
         $faker = Faker\Factory::create("ja_JP");
 
         $attributes = [
             // 'id' => $id,
             'store_id' => $store_id,
             'name' => $faker->word,
-            'qr_url' => $faker->url,
-            'is_open' => $faker->boolean,
+            'date_from' => $faker->dateTime,
+            'date_to' => $faker->dateTime,
+            'content' => $faker->sentence(10)	,
+            'image_path' => $faker->imageUrl,
         ];
 
-        $bot = Bot::firstOrCreate($attributes);
-        // $this->call(StoreTableSeeder::class,$store);
+        return Event::firstOrCreate($attributes);
     }
 }

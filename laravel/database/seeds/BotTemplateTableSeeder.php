@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Store;
-class StoreTableSeeder extends Seeder
+use App\BotTemplate;
+class BotTemplateTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,22 +12,21 @@ class StoreTableSeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i <= 10; $i++) {
-            $store = $this->createStore($i);
+            $store = $this->createBotTemplate($i);
         }
     }
-    public function createStore($id){
+    public function createBotTemplate($id){
         $faker = Faker\Factory::create("ja_JP");
         $word = $faker->text;
         $attributes = [
             // 'id' => $id,
-            'name' => $faker->name,
-            'zip' => $faker->postcode,
-            'address' => $faker->address,
-            'phone' => $faker->phoneNumber,
-            'email' => $faker->email,
+            'name' => $faker->word,
+            'azure_url' => $faker->url,
+            'type' => $faker->boolean,
+            'is_open' => $faker->boolean,
         ];
 
-        $store = Store::firstOrCreate($attributes);
+        $store = BotTemplate::firstOrCreate($attributes);
         // $this->call(StoreTableSeeder::class,$store);
     }
 }

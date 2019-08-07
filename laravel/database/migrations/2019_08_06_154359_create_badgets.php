@@ -15,7 +15,7 @@ class CreateBadgets extends Migration
     {
         Schema::create('badgets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('shop_id')->default(0);
+            $table->integer('store_id')->default(0);
             $table->integer('fee')->default(0);
             $table->timestamp('date')->nullable();
             $table->timestamps();

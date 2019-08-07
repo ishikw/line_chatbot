@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Store;
-use App\Bot;
+use App\Badget;
 
-class BotTableSeeder extends Seeder
+class BadgetTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,21 +15,19 @@ class BotTableSeeder extends Seeder
     {
         $stores = Store::all();
         foreach($stores as $store){
-            $bot = $this->createBot($store->id);
+            $bot = $this->createBadget($store->id);
         }
     }
-    public function createBot($store_id){
+    public function createBadget($store_id){
         $faker = Faker\Factory::create("ja_JP");
 
         $attributes = [
-            // 'id' => $id,
             'store_id' => $store_id,
-            'name' => $faker->word,
-            'qr_url' => $faker->url,
-            'is_open' => $faker->boolean,
+            'fee' => $faker->numberBetween(0,1000000),
+            'date' => $faker->date
         ];
 
-        $bot = Bot::firstOrCreate($attributes);
+        $bot = Badget::firstOrCreate($attributes);
         // $this->call(StoreTableSeeder::class,$store);
     }
 }

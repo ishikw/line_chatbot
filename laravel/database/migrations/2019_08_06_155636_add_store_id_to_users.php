@@ -15,7 +15,7 @@ class AddStoreIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->integer('shop_id')->default(0);
+            $table->integer('store_id')->default(0);
         });
     }
 
@@ -28,7 +28,7 @@ class AddStoreIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropColumn('shop_id');
+            $table->dropColumn('store_id');
         });
     }
 }
