@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Support\Facades\Auth;
+use App\Bot;
+use App\BotTemplate;
 
 class BotController extends Controller
 {
@@ -14,7 +16,8 @@ class BotController extends Controller
      */
     public function index()
     {
-        $items = User::latest('updated_at')->get();
+        $items = Auth::user()->store->bots;
+
         //
         return view('admin.bot.index', compact('items'));
     }
@@ -24,10 +27,10 @@ class BotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-        return view('admin.bot.create', compact('items'));
+        $bot_templates = BotTemplate::findByText($request->input("search_text"));
+        return view('admin.bot.create', compact('bot_template'));
     }
 
     /**
@@ -58,9 +61,11 @@ class BotController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $item = Bot::find($id);
+        $bot_templates = BotTemplate::findByText($request->input("search_text"));
+        return view('admin.bot.edit', compact('item',"bot_templates"));
     }
 
     /**

@@ -22,6 +22,7 @@ class BotTemplateTableSeeder extends Seeder
             // 'id' => $id,
             'name' => $faker->word,
             'azure_url' => $faker->url,
+            'image_url' => $faker->imageUrl,
             'type' => $faker->boolean,
             'is_open' => $faker->boolean,
         ];

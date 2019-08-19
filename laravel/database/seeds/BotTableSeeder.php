@@ -24,8 +24,10 @@ class BotTableSeeder extends Seeder
         $attributes = [
             // 'id' => $id,
             'store_id' => $store_id,
+            'template_id' => $store_id,
             'name' => $faker->word,
-            'qr_url' => $faker->url,
+            'qr_url' => $faker->imageUrl,
+            'image_url' => $faker->imageUrl,
             'is_open' => $faker->boolean,
         ];
 
