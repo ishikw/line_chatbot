@@ -12,6 +12,8 @@
 
     <!-- Styles -->
 	<link href="{{ mix('/css/app.css') }}" rel="stylesheet"> 
+	<script type="text/javascript" src="{{ mix('/js/bot.js') }}"></script>
+
 	
 	@yield('css')
 

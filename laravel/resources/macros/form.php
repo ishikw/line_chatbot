@@ -6,6 +6,9 @@ Form::macro('myInput', function ($type="text", $name, $label="", $options=[], $d
         <div class='form-group'>
             ". $label .
               Form::input($type, $name, $default, array_merge(["class" => "form-control"], $options)). "
+            <div class='invalid-feedback'>
+                ".$label.trans('app.form.required')."
+            </div>
         </div>
     ";
 });

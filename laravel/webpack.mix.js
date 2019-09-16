@@ -26,6 +26,7 @@ mix.webpackConfig(webpack => {
 
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/bot.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .copyDirectory('resources/static/images','public/images')
     .copyDirectory('resources/images','public/images')

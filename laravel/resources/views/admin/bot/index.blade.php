@@ -42,12 +42,23 @@
                                 </span>
                                 <!-- <span class="title">Shop</span> -->
                             </a>
-                            <a href="{{ route(ADMIN . '.bot.destroy',$item->id) }}">
-                                <span class="icon-holder">
-                                    <i class="c-purple-500  ti-trash"></i>
-                                </span>
-                                <!-- <span class="title">Shop</span> -->
-                            </a>
+                            
+                            <form action="{{ route(ADMIN . '.bot.destroy',$item->id)}}" id="form_{{ $item->id }}" method="post" style="display:inline">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                                <button type="submit" style="background-color: transparent;
+                                    border: none;
+                                    cursor: pointer;
+                                    outline: none;
+                                    padding: 0;
+                                    appearance: none;"
+                                    onClick="return confirm('本当に削除してよろしいですか？')"
+                                    >
+                                    <span class="icon-holder">
+                                        <i class="c-purple-500  ti-trash"></i>
+                                    </span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>  

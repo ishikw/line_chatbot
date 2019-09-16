@@ -18,7 +18,6 @@ class BotController extends Controller
     {
         $items = Auth::user()->store->bots;
 
-        //
         return view('admin.bot.index', compact('items'));
     }
 
@@ -30,7 +29,7 @@ class BotController extends Controller
     public function create(Request $request)
     {
         $bot_templates = BotTemplate::findByText($request->input("search_text"));
-        return view('admin.bot.create', compact('bot_template'));
+        return view('admin.bot.create', compact('bot_templates'));
     }
 
     /**
@@ -41,7 +40,25 @@ class BotController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = [
+            'name' => $request->name,
+            'template_id' => $request->template_id,
+            'is_open' => $request->is_open,
+            'store_id' => Auth::user()->store_id,
+            'qr_url' =>"",
+            'image_url' =>""
+        ];
+        $validator = Bot::validator($params, 'login');
+
+        if ($validator->passes()) {
+            $bot = Bot::create($params);
+            
+            if ($bot) {
+                return redirect('/admin/bot')->with("message","BOTを登録しました");
+            }
+        }
+        
+        return redirect('/admin/bot/create')->with("message",implode("\n", $validator->errors()->all()))->withInput($request->all);
     }
 
     /**
@@ -77,7 +94,29 @@ class BotController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $params = [
+            'name' => $request->name,
+            'template_id' => $request->template_id,
+            'is_open' => $request->is_open?:0,
+            'store_id' => Auth::user()->store_id,
+            'qr_url' =>"",
+            'image_url' =>""
+        ];
+
+
+        $bot = Bot::where([
+            ['id', '=', $id],
+            ['store_id', '=', Auth::user()->store_id]
+        ]);
+        if(!$bot->count())
+            abort(500);
+        $validator = Bot::validator($params, 'edit',$id);
+        if ($validator->passes()) {
+            $bot->update($params);
+            return redirect('/admin/bot')->with("message","BOTを更新しました");
+        }else{
+            return back()->with("message",implode("\n", $validator->errors()->all()))->withInput($request->all);
+        }
     }
 
     /**
@@ -89,7 +128,16 @@ class BotController extends Controller
     public function destroy($id)
     {
         //
+        $bot = Bot::where([
+            ['id', '=', $id],
+            ['store_id', '=', Auth::user()->store_id]
+        ]);
+        if(!$bot->count())
+            abort(500);
+        $bot->delete();
+        return back()->with("message","BOTを削除しました");
     }
+
     /**
      * Display chat
      *

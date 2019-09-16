@@ -8,7 +8,8 @@
 	{!! Form::model($item, [
 			'action' => ['BotController@update', $item->id],
 			'method' => 'put', 
-			'files' => true
+			'files' => true,
+			"data-ajax-url" => url("api/bot")
 		])
 	!!}
 
