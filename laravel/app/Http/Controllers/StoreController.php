@@ -50,7 +50,7 @@ class StoreController extends Controller
             $store->update($params);
             return redirect('/admin/store')->with("message","店舗情報を更新しました");
         }else{
-            return back()->with("message",implode("\n", $validator->errors()->all()))->withInput($request->all);
+            return back()->withInput($request->all)->withErrors($validator);
         }
     }
 

@@ -58,7 +58,7 @@ class BotController extends Controller
             }
         }
         
-        return redirect('/admin/bot/create')->with("message",implode("\n", $validator->errors()->all()))->withInput($request->all);
+        return back()->withInput($request->all)->withErrors($validator);
     }
 
     /**
@@ -115,7 +115,8 @@ class BotController extends Controller
             $bot->update($params);
             return redirect('/admin/bot')->with("message","BOTを更新しました");
         }else{
-            return back()->with("message",implode("\n", $validator->errors()->all()))->withInput($request->all);
+            return back()->withInput($request->all)->withErrors($validator);
+
         }
     }
 
