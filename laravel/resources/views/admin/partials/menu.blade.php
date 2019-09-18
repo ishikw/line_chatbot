@@ -28,11 +28,11 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="sidebar-link" href="{{ route(ADMIN . '.shop.index') }}">
+    <a class="sidebar-link" href="{{ route(ADMIN . '.store.index') }}">
         <span class="icon-holder">
             <i class="c-pink-500 ti-marker-alt"></i>
         </span>
-        <span class="title">Shop</span>
+        <span class="title">Store</span>
     </a>
 </li>
 <li class="nav-item">
