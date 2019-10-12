@@ -19,5 +19,6 @@ Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Ro
 });
 
 Route::get('/', function () {
+    return redirect(ADMIN."/");
     return view('welcome');
 });
