@@ -19,7 +19,7 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        return redirect("admin/bot/index");
+        return redirect("admin/bot");
         return view('admin.dashboard.index');
     }
 }
