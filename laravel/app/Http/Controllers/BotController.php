@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Bot;
 use App\BotTemplate;
+use LINE\LINEBot;
+
 
 class BotController extends Controller
 {

@@ -9,6 +9,7 @@ RUN apt-get install -y git libzip-dev unzip
 RUN apt-get install -y libxrender1 libfontconfig1 libxext6 fonts-ipafont
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install sockets
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN composer self-update
