@@ -23,6 +23,7 @@ class users extends Seeder
                 'password' => bcrypt('123456'),
                 'role'     => 10,
                 'bio'      => $faker->realText(),
+                'store_id'     => $i,
             ]);
         }
         

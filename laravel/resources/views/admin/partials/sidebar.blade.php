@@ -4,7 +4,7 @@
 		<div class="sidebar-logo">
 			<div class="peers ai-c fxw-nw">
 				<div class="peer peer-greed">
-					<a class='sidebar-link td-n' href="/">
+					<a class='sidebar-link td-n' href="{{ route(ADMIN . '.bot.index') }}">
 						<div class="peers ai-c fxw-nw">
 							<div class="peer">
 								<div class="logo">

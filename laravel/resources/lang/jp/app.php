@@ -26,6 +26,9 @@ return [
 	"reset_password"     => "Reset Password",
 	"reset_password_btn" => "Send reset link",
 	"connect"            => "Loggin",
+	"form"    => [
+		"required" => "を入力してください"
+	]
 
 
 

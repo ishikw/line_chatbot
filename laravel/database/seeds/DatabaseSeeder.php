@@ -12,5 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(users::class);
+        $this->call(BotTemplateTableSeeder::class);
+        $this->call(StoreTableSeeder::class);
+        //ここから下のSeederはStoreが必須
+        $this->call(BotTableSeeder::class);
+        $this->call(EventTableSeeder::class);
+        $this->call(BadgetTableSeeder::class);
     }
 }

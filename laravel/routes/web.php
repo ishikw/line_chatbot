@@ -13,11 +13,12 @@ Route::group(['prefix' => ADMIN, 'as' => ADMIN . '.', 'middleware'=>['auth', 'Ro
     Route::resource('users', 'UserController');
     Route::get('bot/chat', 'BotController@chat')->name('bot.chat');
     Route::resource('bot', 'BotController');
-    Route::resource('shop', 'ShopController');
+    Route::resource('store', 'StoreController');
     Route::resource('badget', 'BadgetController');
     Route::resource('event', 'EventController');
 });
 
 Route::get('/', function () {
+    return redirect(ADMIN."/");
     return view('welcome');
 });
