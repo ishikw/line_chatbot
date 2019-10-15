@@ -20,4 +20,5 @@ Route::get('bot/', 'API\BotController@index');
 
 Route::group(['namespace' => 'Api'], function () {
     Route::post('/line/callback', 'BotController@callback')->name('line.callback');
+    Route::get('/line/send', 'BotController@send')->name('line.send');
 });

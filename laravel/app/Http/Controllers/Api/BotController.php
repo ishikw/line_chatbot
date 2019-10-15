@@ -50,6 +50,7 @@ class BotController extends Controller
             abort(400);
         }
 
+        logger($request->getContent());
         $events = $bot->parseEventRequest($request->getContent(), $signature);
 
         /** @var LINEBot\Event\BaseEvent $event */
@@ -91,6 +92,27 @@ class BotController extends Controller
 
             $bot->replyText($reply_token, $reply_message);
         }
+    }
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function send(Request $request)
+    {
+        $uuid = "U346e65669ad829fbf506947216ff7939";
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('LINE_CHANNEL_SECRET')]);
+    
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello'); //ここにメッセージを入れる。
+        $response = $bot->pushMessage("{$uuid}", $textMessageBuilder);
+    
+        // echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        return response()->json([
+            'status' => 'success',
+            "responsel" => $response->getHTTPStatus() . ' ' . $response->getRawBody()
+            // 'bots' => view("admin/bot/bottemplate",["bot_templates"=>$items])->render(),
+        ]);
     }
 
 }
